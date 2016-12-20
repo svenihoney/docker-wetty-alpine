@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  wetty:
+    image: svenihoney/wetty
+    environment:
+      - VIRTUAL_HOST=wetty.example.com
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=wetty.example.com
+      - LETSENCRYPT_EMAIL=webmaster@example.com
+      - REMOTE_SSH_SERVER=ssh.example.com
+      - REMOTE_SSH_PORT=22
+      - REMOTE_SSH_USER=root
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
