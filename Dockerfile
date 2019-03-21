@@ -1,21 +1,22 @@
-FROM mhart/alpine-node:6
+FROM node:10-alpine
 MAINTAINER Sven Fischer <sven@leiderfischer.de>
 
 WORKDIR /src
 
-RUN apk update && apk add --no-cache git openssh-client \
-  && git clone https://github.com/krishnasrinivas/wetty /src \
-  && apk add --no-cache python make g++ \
+RUN apk add --no-cache --virtual .build-deps \
+  git python make g++ \
+  && apk add --no-cache openssh-client \
+  && git clone https://github.com/krishnasrinivas/wetty --branch v1.1.4 /src \
   && npm install \
-  && apk del -r python make g++ \
-  && adduser -h /src -D term
+  && apk del .build-deps \
+  && adduser -h /src -D term \
+  && npm run-script build
 
 ADD run.sh /src
 
 # Default ENV params used by wetty
 ENV REMOTE_SSH_SERVER 127.0.0.1
 ENV REMOTE_SSH_PORT 22
-ENV REMOTE_SSH_USER root
 
 EXPOSE 3000
 

@@ -1,9 +1,13 @@
 #!/bin/sh
 
-if [ "x$REMOTE_SSH_SERVER" == "x" ]; then
+if [ "x${REMOTE_SSH_SERVER}" == "x" ]; then
   # Login mode, no SSH_SERVER
-  node app.js -p 3000
+  npm start -- -p 3000
 else
   # SSH connect mode
-  su -c "node app.js -p 3000 --sshhost $REMOTE_SSH_SERVER --sshport $REMOTE_SSH_PORT --sshuser $REMOTE_SSH_USER" term
+  cmd="npm start -- -p 3000 --sshhost ${REMOTE_SSH_SERVER} --sshport ${REMOTE_SSH_PORT}" 
+  if ! [ "x${REMOTE_SSH_USER}" == "x" ]; then
+    cmd="${cmd} --sshuser ${REMOTE_SSH_USER}"
+  fi
+  su -c "${cmd}" term
 fi
