@@ -34,7 +34,7 @@ docker port term 3000
 You may then access the application using http://DockerHostIP:PORT. You may dynamicly change the login-user by utilizing wetty's HTTP GET syntax, e.g.: 
 
 ```
-http://DockerHostIP:PORT/wetty/ssh/your-ssh-user
+http://DockerHostIP:PORT/ssh/your-ssh-user
 ```
 
 Reverse Proxy

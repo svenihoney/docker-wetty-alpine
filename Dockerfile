@@ -15,8 +15,8 @@ RUN apk add --no-cache --virtual .build-deps \
 ADD run.sh /src
 
 # Default ENV params used by wetty
-ENV REMOTE_SSH_SERVER 127.0.0.1
-ENV REMOTE_SSH_PORT 22
+ENV REMOTE_SSH_SERVER=127.0.0.1 \
+    REMOTE_SSH_PORT=22
 
 EXPOSE 3000
 
