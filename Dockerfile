@@ -16,7 +16,8 @@ ADD run.sh /src
 
 # Default ENV params used by wetty
 ENV REMOTE_SSH_SERVER=127.0.0.1 \
-    REMOTE_SSH_PORT=22
+    REMOTE_SSH_PORT=22 \
+    WETTY_PORT=3000
 
 EXPOSE 3000
 
