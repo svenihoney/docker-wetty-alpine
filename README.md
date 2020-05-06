@@ -22,6 +22,7 @@ The environment parameters
 - REMOTE_SSH_SERVER
 - REMOTE_SSH_PORT
 - REMOTE_SSH_USER
+- WETTY_PORT
 
 are optional and will be used to configure wetty. If not set, a connection to 127.0.0.1:22 using root will be performed.
 In order to access the web application, you have to get the IP and PORT it is hosted at within your docker environment. 
