@@ -1,18 +1,24 @@
-FROM node:10-alpine
-MAINTAINER Sven Fischer <sven@leiderfischer.de>
+FROM node:carbon-alpine as builder
+RUN apk add -U build-base python git
+WORKDIR /app
+#COPY . /app
+RUN git clone https://github.com/krishnasrinivas/wetty --branch v1.3.0 /app && \
+    yarn && \
+    yarn build && \
+    yarn install --production --ignore-scripts --prefer-offline
 
-WORKDIR /src
-
-RUN apk add --no-cache --virtual .build-deps \
-  git python make g++ \
-  && apk add --no-cache openssh-client \
-  && git clone https://github.com/krishnasrinivas/wetty --branch v1.1.4 /src \
-  && npm install \
-  && apk del .build-deps \
-  && adduser -h /src -D term \
-  && npm run-script build
-
-ADD run.sh /src
+FROM node:carbon-alpine
+LABEL maintainer="Sven Fischer <sven@leiderfischer.de>"
+WORKDIR /app
+ENV NODE_ENV=production
+EXPOSE 3000
+COPY --from=builder /app/dist /app/dist
+COPY --from=builder /app/node_modules /app/node_modules
+COPY --from=builder /app/package.json /app/package.json
+COPY --from=builder /app/index.js /app/index.js
+RUN apk add -U openssh-client sshpass
+#
+ADD run.sh /app
 
 # Default ENV params used by wetty
 ENV REMOTE_SSH_SERVER=127.0.0.1 \
