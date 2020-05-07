@@ -2,7 +2,7 @@ FROM node:carbon-alpine as builder
 RUN apk add -U build-base python git
 WORKDIR /app
 #COPY . /app
-RUN git clone https://github.com/krishnasrinivas/wetty --branch v1.3.0 /app && \
+RUN git clone https://github.com/butlerx/wetty --branch v1.3.0 /app && \
     yarn && \
     yarn build && \
     yarn install --production --ignore-scripts --prefer-offline

@@ -4,7 +4,7 @@ Dockerized Wetty
 This is a dockerized version of Wetty butlerx (https://github.com/butlerx/wetty), 
 with additional ideas from Robert Szymczak (https://github.com/m451/docker-wetty). Both docker images available in these
 repositories are node base, with sized up to 1G. This one is based on alpine-node, which gives 
-a docker image of around 30G with all npm modules.
+a docker image of around 30MB with all npm modules.
 
 This project is linked to the docker hub, so you may always pull the latest build from any docker environment.
 
