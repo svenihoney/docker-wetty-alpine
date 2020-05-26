@@ -18,5 +18,11 @@ else
   if ! [ "x${REMOTE_SSH_USER}" == "x" ]; then
     cmd="${cmd} --sshuser ${REMOTE_SSH_USER}"
   fi
+  if ! [ "x${SSH_AUTH}" == "x" ]; then
+    cmd="${cmd} --sshauth ${SSH_AUTH}"
+  fi
+  if ! [ "x${SSH_KEY}" == "x" ]; then
+    cmd="${cmd} --sshkey ${SSH_KEY}"
+  fi
   su -c "${cmd}" node
 fi
