@@ -21,6 +21,9 @@ else
   if ! [ "x${SSH_AUTH}" == "x" ]; then
     cmd="${cmd} --sshauth ${SSH_AUTH}"
   fi
+  if ! [ "x${KNOWN_HOSTS}" == "x" ]; then
+    cmd="${cmd} --knownhosts ${KNOWNHOSTS}"
+  fi
   if ! [ "x${SSH_KEY}" == "x" ]; then
     cmd="${cmd} --sshkey ${SSH_KEY}"
   fi
