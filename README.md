@@ -63,7 +63,7 @@ SSH Host Checking
 You can enable strict host checking with the following options:
 
 - `-e KNOWNHOSTS=/path/to/known/hosts`
-- `-v /path/to/known/hosts:/path/to/known/hosts'
+- `-v /path/to/known/hosts:/path/to/known/hosts`
 
 
 Example:
