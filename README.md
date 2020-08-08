@@ -56,3 +56,17 @@ Example:
 ```
 docker run -dt -e REMOTE_SSH_SERVER=10.10.10.10 -e REMOTE_SSH_PORT=22 -e REMOTE_SSH_USER=root -p 3000 --name term  -e 'SSH_AUTH=publickey' -e 'SSH_KEY=/config/id_rsa' -v /path/to/key/id_rsa:/config/id_rsa:ro svenihoney/wetty
 ```
+
+SSH Host Checking
+-------------
+
+You can enable strict host checking with the following options:
+
+- `-e KNOWNHOSTS=/path/to/known/hosts`
+- `-v /path/to/known/hosts:/path/to/known/hosts`
+
+
+Example:
+```
+docker run -dt -e REMOTE_SSH_SERVER=10.10.10.10 -e REMOTE_SSH_PORT=22 -e REMOTE_SSH_USER=root -p 3000 --name term  -e 'KNOWNHOSTS=/config/known_hosts' -v '/path/to/known/hosts:/config/known_hosts' svenihoney/wetty
+```
